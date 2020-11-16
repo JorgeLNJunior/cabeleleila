@@ -1,6 +1,5 @@
 <div align="center">
    <h1>Cabeleleila</h1>
-   </br>
    <p>App para gestão de reservas de salões de beleza para a matéria de programação mobile.</p>
 </div>
 
