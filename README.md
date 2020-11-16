@@ -27,3 +27,10 @@
         }
     }   
     ```
+
+# Critéios da aplicação
+
+- [x] Interface amigável
+- [x] Salvar e ler informções na base SQLite
+- [x] Ter conexão com Firebase, efetuando as operações de CRUD (Create,
+Read, Update e Delete)
