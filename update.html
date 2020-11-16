@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/css/tempusdominus-bootstrap-4.min.css"
+        integrity="sha512-PMjWzHVtwxdq7m7GIxBot5vdxUY+5aKP9wpKtvnNBZrVv1srI8tU6xvFMzG8crLNcMj/8Xl/WWmo/oAP/40p1g=="
+        crossorigin="anonymous" />
+    <title>Marcar horário</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <!-- nav bar -->
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="login.html">Usuário</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="create.html">Marcar Horário</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <!-- nav bar end -->
+
+    <div class="container-fluid">
+        <div class="mt-5">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Marcar horário</h5>
+                            <form id="updateEntry">
+                                <div class="form-group">
+                                    <label class="label">Data: </label>
+                                    <div class="input-group date" id="datetimepicker1" data-target-input="nearest">
+                                        <input type="text" class="form-control datetimepicker-input" readonly="readonly"
+                                            data-target="#datetimepicker1" id="date" />
+                                        <div class="input-group-append" data-target="#datetimepicker1"
+                                            data-toggle="datetimepicker">
+                                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button id="submit" class="btn btn-primary">Alterar horário</button>
+                                </div>
+                                <div class="row justify-content-center mt-3">
+                                    <span>Atendemos de seg. à sex, das 8 às 17</span>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/locale/pt-br.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.1.2/js/tempusdominus-bootstrap-4.min.js"
+        integrity="sha512-2JBCbWoMJPH+Uj7Wq5OLub8E5edWHlTM4ar/YJkZh3plwB2INhhOC3eDoqHm1Za/ZOSksrLlURLoyXVdfQXqwg=="
+        crossorigin="anonymous"></script>
+    <script>
+        var firebaseConfig = {
+            // insert firebase config
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+
+                var entry_id = getParam('id')
+
+                if (entry_id) {
+                    var Entry = firebase.database().ref('Entry').child(entry_id)
+
+                    Entry.once('value', function (r) {
+                        var entry = r.val();
+
+                        document.getElementById('date').value = entry.date
+
+                        $('#updateEntry').submit(function (e) {
+                            e.preventDefault()
+
+                            var Entry = firebase.database().ref('Entry').child(entry_id).set({
+                                uid: entry.uid,
+                                date: document.getElementById('date').value,
+                                createdAt: entry.createdAt,
+                                updatedAt: Date.now()
+                            })
+                                .then(function (data) {
+                                    window.location.href = 'index.html'
+                                })
+                                .catch(function (error) {
+                                    alert(error);
+                                    console.error(error);
+                                })
+                            return false
+                        })
+                    })
+                }
+            } else {
+                alert('Entre com uma conta antes')
+                window.location.href = 'login.html'
+            }
+        })
+    </script>
+    <script type="text/javascript">
+        $('#datetimepicker1 input').click(function (event) {
+            $('#datetimepicker1').data("DateTimePicker").show();
+        });
+        $.fn.datetimepicker.Constructor.Default = $.extend({}, $.fn.datetimepicker.Constructor.Default, {
+            icons: {
+                time: 'far fa-clock',
+                date: 'far fa-calendar',
+                up: 'far fa-arrow-up',
+                down: 'far fa-arrow-down',
+                previous: 'far fa-chevron-left',
+                next: 'far fa-chevron-right',
+                today: 'far fa-calendar-check-o',
+                clear: 'far fa-trash',
+                close: 'far fa-times'
+            }
+        });
+
+        $(function () {
+            $('#datetimepicker1').datetimepicker({
+                locale: 'pt-br',
+                minDate: moment(Date.now()).add(1, 'days'),
+                ignoreReadonly: true,
+                allowInputToggle: true,
+                daysOfWeekDisabled: [0, 6],
+                disabledHours: [0, 1, 2, 3, 4, 5, 6, 7, 17, 18, 19, 20, 21, 22, 23, 24]
+            });
+        });
+    </script>
+    <script>
+        function getParam(name) {
+            let searchParams = new URLSearchParams(window.location.search)
+            return searchParams.get(name)
+        }
+    </script>
+</body>
+
+</html>

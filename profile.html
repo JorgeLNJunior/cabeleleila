@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Usuário</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="index.html">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="login.html">Usuário</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="create.html">Marcar Horário</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <h2>Perfil</h2>
+
+        <div class="row text-center">
+            <div class="col">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row justify-content-start">
+                            <div class="container">
+                                <img src="" class="rounded-circle" id="userPhoto" width="48px">
+                                <h5 class="card-title" id="userName"></h5>
+                            </div>
+                            <div class="container">
+                                <div class="col mx-auto">
+                                    <div class="row justify-content-center">
+                                        <b>Nome: </b>
+                                        <span id="userNameInfo" class="tab-space"></span>
+                                    </div>
+                                    <div class="row justify-content-center">
+                                        <b>Email: </b>
+                                        <span id="userEmailInfo" class="tab-space"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container mt-3">
+                                <div class="row justify-content-center">
+                                    <button id="logout" class="btn btn-lg btn-warning">Sair</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+    <!-- member plugins -->
+    <script src="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/4.6.1/firebase-ui-auth.css" />
+    <!-- End - member plugins -->
+    <script>
+        var firebaseConfig = {
+            // insert firebase config
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        firebase.auth().onAuthStateChanged(function (user) {
+            if (user) {
+                console.log(user)
+
+                document.getElementById('userPhoto').getAttributeNode('src').value = user.photoURL || 'https://i.picsum.photos/id/844/200/200.jpg?hmac=blYHTv1EUQA2puhc8O_7gTL4H6Y8FgSmVXDYEJqXWdQ'
+                document.getElementById('userName').innerHTML = user.displayName
+                document.getElementById('userNameInfo').innerHTML = user.displayName
+                document.getElementById('userEmailInfo').innerHTML = user.email
+
+                document.getElementById('logout').onclick = function () {
+                    if (confirm('Dejesa sair?')) {
+                        firebase.auth().signOut()
+                    }
+                }
+            } else {
+                window.location.href = 'login.html'
+            }
+        })
+    </script>
+    <style>
+        span.tab-space {
+            padding-left: 0.4em;
+        }
+    </style>
+</body>
+
+</html>
