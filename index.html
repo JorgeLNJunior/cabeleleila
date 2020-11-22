@@ -2,72 +2,69 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-  <title>Cabeleleila</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+	 crossorigin="anonymous">
+	<title>Cabeleleila</title>
 </head>
 
 <body onload="">
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+		<a class="navbar-brand" href="#">Home</a>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+		 aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="login.html">Usuário</a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="create.html">Marcar Horário</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+		<div class="collapse navbar-collapse" id="navbarSupportedContent">
+			<ul class="navbar-nav mr-auto">
+				<li class="nav-item active">
+					<a class="nav-link" href="login.html">Usuário</a>
+				</li>
+				<li class="nav-item active">
+					<a class="nav-link" href="create.html">Marcar Horário</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
 
-  <div class="container-fluid">
-    <h1>Horários</h1>
-    <h5>Seus horários aparecerão aqui:</h5>
-    <h5 id="qtdeHorarios"></h5>
-    <div id="entries" class="row">
+	<div class="container-fluid">
+		<h1>Horários</h1>
+		<h5>Seus horários aparecerão aqui:</h5>
+		<h5 id="qtdeHorarios"></h5>
+		<div id="entries" class="row">
 
-    </div>
+		</div>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-      integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-      crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-      integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-      crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
-      integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-      crossorigin="anonymous"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
-    <script>
-      var firebaseConfig = {
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+		 crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		 crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		 crossorigin="anonymous"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-auth.js"></script>
+		<script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-database.js"></script>
+		<script>
+			var firebaseConfig = {
           // insert firebase config
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
 
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          createDB()
-          var results = firebase.database().ref('Entry').orderByChild('uid').equalTo(user.uid)
+        firebase.auth().onAuthStateChanged(function(user) {
+          if (user) {
+            createDB()
+            var results = firebase.database().ref('Entry').orderByChild('uid').equalTo(user.uid)
 
-          results.on('value', function (result) {
-            var html = ''
-            result.forEach(function (item) {
-              entry = item.val()
-              html = `
+            results.on('value', function(result) {
+              var html = ''
+              result.forEach(function(item) {
+                entry = item.val()
+                html = `
                 <div class="col-12 col-md-6 mt-4">
                   <div class="card">
                     <div class="card-body">
@@ -85,101 +82,104 @@
                     </div>
                   </div>
                 </div> ` + html
+              })
+              $('#entries').html(html);
             })
-            $('#entries').html(html);
-          })
-        } else {
-          var html = `<div class="col">
+          } else {
+            var html = `<div class="col">
                           <h5>Entre com uma conta</h5>
                         </div>`
-          $('#entries').html(html);
-        }
-      })
-    </script>
-    <script>
-      function cancel(key) {
+            $('#entries').html(html);
+          }
+        })
+		</script>
+		<script>
+			function cancel (key) {
         firebase.database().ref('Entry').child(key).remove()
-          .then(function (response) {
+          .then(function(response) {
             deleteOnLocalDB()
             alert('Horário cancelado')
           })
-          .catch(function (error) {
+          .catch(function(error) {
             alert('Ocorreu um erro')
           })
       }
-      function update(key) {
+      function update (key) {
         window.location.href = 'update.html?id=' + key
       }
-    </script>
-    <script type="text/javascript" charset="utf-8">
-      function executeQuery(tx) {
+		</script>
+		<script type="text/javascript" charset="utf-8">
+			function executeQuery(tx) {
         tx.executeSql('CREATE TABLE IF NOT EXISTS horarios (id unique, qtd integer)');
         tx.executeSql('INSERT OR IGNORE INTO horarios (id, qtd) VALUES (1, 0)');
-      }
+    }
 
-      function queryDB(tx) {
+    function queryDB(tx) {
         tx.executeSql('SELECT * FROM horarios', [], querySuccess, errorCB);
-      }
+    }
 
-      function querySuccess(tx, results) {
+    function querySuccess(tx, results) {
         if (results.rows.item(0).qtd == 1) {
-          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horário'
+          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horário'   
         } else {
-          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horários'
-        }
-      }
+          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horários' 
+        }   
+    }
 
-      //Callback function when the transaction is failed.
-      function errorCB(err) {
+    //Callback function when the transaction is failed.
+    function errorCB(err) {
         alert('Ocorreu um erro')
-      }
+    }
 
-      // Callback function when the transaction is success.
-      function successCB() {
+    // Callback function when the transaction is success.
+    function successCB() {
         var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
         db.transaction(queryDB, errorCB);
-      }
-
-      function createDB() {
+    }
+   
+    function createDB(){
         var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
         db.transaction(executeQuery, errorCB, successCB);
-
-      }
-    </script>
-    <script>
-      function executeDeleteQuery(tx) {
+ 
+    }
+		</script>
+		<script>
+			function executeDeleteQuery(tx) {
         tx.executeSql('UPDATE horarios SET qtd = qtd - 1 WHERE id = 1');
       }
 
       function deleteQueryDB(tx) {
-        tx.executeSql('SELECT * FROM horarios', [], deleteQuerySuccess, deleteErrorCB);
+          tx.executeSql('SELECT * FROM horarios', [], deleteQuerySuccess, deleteErrorCB);
       }
 
       function deleteQuerySuccess(tx, results) {
         if (results.rows.item(0).qtd == 1) {
-          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horário'
+          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0)  .qtd + ' horário'   
         } else {
-          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horários'
-        }
+          document.getElementById('qtdeHorarios').innerHTML = 'Você já marcou ' + results.rows.item(0).qtd + ' horários' 
+        }       
       }
 
       //Callback function when the transaction is failed.
       function deleteErrorCB(err) {
-        alert('Ocorreu um erro')
+          alert('Ocorreu um erro')
       }
 
       // Callback function when the transaction is success.
       function deleteSuccessCB() {
-        var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
-        db.transaction(deleteQueryDB, deleteErrorCB);
+          var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
+          db.transaction(deleteQueryDB, deleteErrorCB);
       }
-
-      function deleteOnLocalDB() {
-        var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
-        db.transaction(executeDeleteQuery, deleteErrorCB, deleteSuccessCB);
-
+    
+      function deleteOnLocalDB(){
+          if (document.getElementById('qtdeHorarios').innerHTML == 'Você já marcou ' + 0 + ' horários') {
+            return
+          }
+          var db = window.openDatabase("Database", "1.0", "TestDatabase", 200000);
+          db.transaction(executeDeleteQuery, deleteErrorCB, deleteSuccessCB);
+  
       }
-    </script>
+		</script>
 
 </body>
 
