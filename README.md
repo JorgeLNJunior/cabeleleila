@@ -1,6 +1,5 @@
 <div align="center">
    <h1>Cabeleleila</h1>
-   </br>
    <p>App para gestão de reservas de salões de beleza para a matéria de programação mobile.</p>
 </div>
 
@@ -28,7 +27,7 @@
     }   
     ```
 
-# Critéios da aplicação
+## Critéios da aplicação
 
 - [x] Interface amigável
 - [x] Salvar e ler informções na base SQLite
